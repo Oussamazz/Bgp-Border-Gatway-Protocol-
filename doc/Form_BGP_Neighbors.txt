@@ -1,0 +1,72 @@
+ ### Form BGP Neighbors
+
+Two BGP routers become neighbors after the routers establish a TCP connection between each other. The TCP connection is essential in order for the two peer routers to start the exchange of routing updates.
+
+After the TCP connection is up, the routers send open messages in order to exchange values. The values that the routers exchange include the AS number, the BGP version that the routers run, the BGP router ID, and the keepalive hold time. After the confirmation and acceptance of these values, establishment of the neighbor connection occurs. Any state other than Established is an indication that the two routers did not become neighbors and that the routers cannot exchange BGP updates.
+
+Issue this neighbor command to establish a TCP connection:
+
+    neighbor ip-address remote-as number
+
+The number in the command is the AS number of the router to which you want to connect with BGP. The ip-address is the next hop address with direct connection for eBGP. For iBGP, ip-address is any IP address on the other router.
+
+The two IP addresses that you use in the neighbor command of the peer routers must be able to reach one another. One way to verify reachability is an extended ping between the two IP addresses. The extended ping forces the pinging router to use as source the IP address that the neighbor command specifies. The router must use this address rather than the IP address of the interface from which the packet goes.
+
+If there are any BGP configuration changes, you must reset the neighbor connection to allow the new parameters to take effect.
+
+    clear ip bgp address
+
+    Note: The address is the neighbor address.
+
+    clear ip bgp *
+
+    This command clears all neighbor connections.
+
+By default, BGP sessions begin with the use of BGP version 4 and negotiate downward to earlier versions, if necessary. You can prevent negotiations and force the BGP version that the routers use to communicate with a neighbor. Issue this command in router configuration mode:
+
+    neighbor {ip address | peer-group-name} version value
+
+_________________________________________
+_________________________________________
+
+    RTA# // 129.213.1.2
+    router bgp 100
+    neighbor 129.213.1.1 remote-as 200
+
+    RTB# // 175.220.212.1
+    router bgp 200
+    neighbor 129.213.1.2 remote-as 100
+    neighbor 175.220.1.2 remote-as 200
+
+    RTC# // 175.220.1.2
+    router bgp 200
+    neighbor 175.220.212.1 remote-as 200
+
+In this example, RTA and RTB run eBGP. RTB and RTC run iBGP. The remote AS number points to either an external or an internal AS, which indicates either eBGP or iBGP. Also, the eBGP peers have direct connection, but the iBGP peers do not have direct connection. iBGP routers do not need to have direct connection. But, there must be some IGP that runs and allows the two neighbors to reach one another.
+
+This section provides an example of the information that the show ip bgp neighbors command displays.
+
+Note: Pay special attention to the BGP state. Anything other than the state Established indicates that the peers are not up.
+
+Note: Also, notice these items:
+
+    The BGP version, which is 4
+
+    The remote router ID
+
+    This number is the highest IP address on the router or the highest loopback interface, if existent.
+
+    The table version
+
+    The table version provides the state of the table. Any time that new information comes in, the table increases the version. A version that continues to increment indicates that there is some route flap that causes the continuous update of routes.
+
+    # show ip bgp neighbors
+         BGP neighbor is 129.213.1.1, remote AS 200, external link 
+         BGP version 4, remote router ID 175.220.12.1 
+         BGP state = Established, table version = 3, up for 0:10:59 
+         Last read 0:00:29, hold time is 180, keepalive interval is 60 seconds 
+         Minimum time between advertisement runs is 30 seconds 
+         Received 2828 messages, 0 notifications, 0 in queue 
+         Sent 2826 messages, 0 notifications, 0 in queue 
+         Connections established 11; dropped 10
+
