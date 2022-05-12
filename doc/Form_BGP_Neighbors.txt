@@ -1,16 +1,25 @@
  ### Form BGP Neighbors
 
-Two BGP routers become neighbors after the routers establish a TCP connection between each other. The TCP connection is essential in order for the two peer routers to start the exchange of routing updates.
+Two BGP routers become neighbors after the routers establish a TCP connection between each other.
+The TCP connection is essential in order for the two peer routers to start the exchange of routing updates.
 
-After the TCP connection is up, the routers send open messages in order to exchange values. The values that the routers exchange include the AS number, the BGP version that the routers run, the BGP router ID, and the keepalive hold time. After the confirmation and acceptance of these values, establishment of the neighbor connection occurs. Any state other than Established is an indication that the two routers did not become neighbors and that the routers cannot exchange BGP updates.
+After the TCP connection is up, the routers send open messages in order to exchange values.
+The values that the routers exchange include the AS number, the BGP version that the routers run, the BGP router ID, and the keepalive hold time.
+After the confirmation and acceptance of these values, establishment of the neighbor connection occurs.
+Any state other than Established is an indication that the two routers did not become neighbors and that the routers cannot exchange BGP updates.
 
 Issue this neighbor command to establish a TCP connection:
 
     neighbor ip-address remote-as number
 
-The number in the command is the AS number of the router to which you want to connect with BGP. The ip-address is the next hop address with direct connection for eBGP. For iBGP, ip-address is any IP address on the other router.
+The number in the command is the AS number of the router to which you want to connect with BGP.
+The ip-address is the next hop address with direct connection for eBGP.
+For iBGP, ip-address is any IP address on the other router.
 
-The two IP addresses that you use in the neighbor command of the peer routers must be able to reach one another. One way to verify reachability is an extended ping between the two IP addresses. The extended ping forces the pinging router to use as source the IP address that the neighbor command specifies. The router must use this address rather than the IP address of the interface from which the packet goes.
+The two IP addresses that you use in the neighbor command of the peer routers must be able to reach one another.
+One way to verify reachability is an extended ping between the two IP addresses.
+The extended ping forces the pinging router to use as source the IP address that the neighbor command specifies.
+The router must use this address rather than the IP address of the interface from which the packet goes.
 
 If there are any BGP configuration changes, you must reset the neighbor connection to allow the new parameters to take effect.
 
@@ -22,7 +31,9 @@ If there are any BGP configuration changes, you must reset the neighbor connecti
 
     This command clears all neighbor connections.
 
-By default, BGP sessions begin with the use of BGP version 4 and negotiate downward to earlier versions, if necessary. You can prevent negotiations and force the BGP version that the routers use to communicate with a neighbor. Issue this command in router configuration mode:
+By default, BGP sessions begin with the use of BGP version 4 and negotiate downward to earlier versions, if necessary.
+You can prevent negotiations and force the BGP version that the routers use to communicate with a neighbor.
+Issue this command in router configuration mode:
 
     neighbor {ip address | peer-group-name} version value
 
@@ -42,7 +53,9 @@ _________________________________________
     router bgp 200
     neighbor 175.220.212.1 remote-as 200
 
-In this example, RTA and RTB run eBGP. RTB and RTC run iBGP. The remote AS number points to either an external or an internal AS, which indicates either eBGP or iBGP. Also, the eBGP peers have direct connection, but the iBGP peers do not have direct connection. iBGP routers do not need to have direct connection. But, there must be some IGP that runs and allows the two neighbors to reach one another.
+In this example, RTA and RTB run eBGP. RTB and RTC run iBGP. The remote AS number points to either an external or an internal AS,
+which indicates either eBGP or iBGP. Also, the eBGP peers have direct connection, but the iBGP peers do not have direct connection.
+iBGP routers do not need to have direct connection. But, there must be some IGP that runs and allows the two neighbors to reach one another.
 
 This section provides an example of the information that the show ip bgp neighbors command displays.
 
@@ -58,7 +71,8 @@ Note: Also, notice these items:
 
     The table version
 
-    The table version provides the state of the table. Any time that new information comes in, the table increases the version. A version that continues to increment indicates that there is some route flap that causes the continuous update of routes.
+    The table version provides the state of the table. Any time that new information comes in, the table increases the version.
+    A version that continues to increment indicates that there is some route flap that causes the continuous update of routes.
 
     # show ip bgp neighbors
          BGP neighbor is 129.213.1.1, remote AS 200, external link 
