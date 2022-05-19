@@ -1,8 +1,29 @@
 #P1
 
 
-##FRR:
-FRR is a high performance suite written primarily in C.
+##Frrouting: (Free Range Routing) (Quagga fork).
+1- Free Range Routing or FRRouting or FRR is a network routing software suite running on Unix-like platforms,
+particularly Linux, Solaris, OpenBSD, FreeBSD and NetBSD. It was created as a fork from Quagga.
+FRRouting is distributed under the terms of the GNU General Public License v2 (GPL2).
+
+FRR provides implementations of the following protocols:
+
+    Open Shortest Path First (OSPF)
+    Routing Information Protocol (RIP)
+    Border Gateway Protocol (BGP)
+    IS-IS
+    Label Distribution Protocol (LDP)
+    Protocol Independent Multicast (PIM)
+    Babel
+    Bidirectional Forwarding Detection (BFD)
+    Ethernet VPN (EVPN)
+
+It also provides alpha implementations of:
+
+    Next Hop Resolution Protocol (NHRP)
+    Enhanced Interior Gateway Routing Protocol (EIGRP).
+
+2- FRR is a high performance suite written primarily in C.
 It can easily handle full Internet routing tables and is suitable for use on hardware ranging from cheap SBCs to commercial grade routers.
 It is actively used in production by hundreds of companies, universities, research labs and governments.
 ##System Architecture
@@ -25,25 +46,4 @@ Additionally, each daemon implements a plugin system allowing new functionality 
 - install docker.io
 - pull frrouting image/ pull alpin image
 - $> docker images
-
-##frrouting: (Free Range Routing) (Quagga fork).
-    Free Range Routing or FRRouting or FRR is a network routing software suite running on Unix-like platforms,
-    particularly Linux, Solaris, OpenBSD, FreeBSD and NetBSD. It was created as a fork from Quagga.
-    FRRouting is distributed under the terms of the GNU General Public License v2 (GPL2).
-
-    FRR provides implementations of the following protocols:
-
-        Open Shortest Path First (OSPF)
-        Routing Information Protocol (RIP)
-        Border Gateway Protocol (BGP)
-        IS-IS
-        Label Distribution Protocol (LDP)
-        Protocol Independent Multicast (PIM)
-        Babel
-        Bidirectional Forwarding Detection (BFD)
-        Ethernet VPN (EVPN)
-
-    It also provides alpha implementations of:
-
-        Next Hop Resolution Protocol (NHRP)
-        Enhanced Interior Gateway Routing Protocol (EIGRP)
+-
