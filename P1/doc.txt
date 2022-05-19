@@ -3,13 +3,47 @@
 
 ##FRR:
 FRR is a high performance suite written primarily in C.
- It can easily handle full Internet routing tables and is suitable for use on hardware ranging from cheap SBCs to commercial grade routers.
-  It is actively used in production by hundreds of companies, universities, research labs and governments.
+It can easily handle full Internet routing tables and is suitable for use on hardware ranging from cheap SBCs to commercial grade routers.
+It is actively used in production by hundreds of companies, universities, research labs and governments.
 ##System Architecture
 Traditional routing software is made as a one process program which provides all of the routing protocol functionalities.
- FRR takes a different approach. FRR is a suite of daemons that work together to build the routing table. Each major protocol is implemented in its own daemon,
-  and these daemons talk to a middleman daemon (zebra), which is responsible for coordinating routing decisions and talking to the dataplane.
+FRR takes a different approach. FRR is a suite of daemons that work together to build the routing table.
+Each major protocol is implemented in its own daemon, and these daemons talk to a middleman daemon (zebra),
+which is responsible for coordinating routing decisions and talking to the dataplane.
 
-This architecture allows for high resiliency, since an error, crash or exploit in one protocol daemon will generally not affect the others.
- It is also flexible and extensible since the modularity makes it easy to implement new protocols and tie them into the suite. Additionally,
-  each daemon implements a plugin system allowing new functionality to be loaded at runtime.
+This architecture allows for high resiliency, since an error,
+crash or exploit in one protocol daemon will generally not affect the others.
+It is also flexible and extensible since the modularity makes it easy to implement new protocols and tie them into the suite.
+Additionally, each daemon implements a plugin system allowing new functionality to be loaded at runtime.
+
+
+#Installation
+
+-adding gns3 repository: sudo add-apt ppa:gns3/ppa
+-apt install gns3-gui.
+- install gnome-session-flashback: sudo apt install gnome-session-flashback
+- install docker.io
+- pull frrouting image/ pull alpin image
+- $> docker images
+
+##frrouting: (Free Range Routing) (Quagga fork).
+    Free Range Routing or FRRouting or FRR is a network routing software suite running on Unix-like platforms,
+    particularly Linux, Solaris, OpenBSD, FreeBSD and NetBSD. It was created as a fork from Quagga.
+    FRRouting is distributed under the terms of the GNU General Public License v2 (GPL2).
+
+    FRR provides implementations of the following protocols:
+
+        Open Shortest Path First (OSPF)
+        Routing Information Protocol (RIP)
+        Border Gateway Protocol (BGP)
+        IS-IS
+        Label Distribution Protocol (LDP)
+        Protocol Independent Multicast (PIM)
+        Babel
+        Bidirectional Forwarding Detection (BFD)
+        Ethernet VPN (EVPN)
+
+    It also provides alpha implementations of:
+
+        Next Hop Resolution Protocol (NHRP)
+        Enhanced Interior Gateway Routing Protocol (EIGRP)
