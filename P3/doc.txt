@@ -32,7 +32,6 @@ FRRouting offre une _CLI_ semblable à celle de CISCO, avec le système de privi
 
 In our subject the _VTEP_ (Virtual Termination End-Point), are three in number,
 our "**Leafs**" on the topology, we will configure them first.
-We will not configure one of the bridges, to highlight the usefulness of these in our eVPN.
 
 ### router 2
 
@@ -48,7 +47,7 @@ $ vtysh # open vtysh
 
 $ config t # configuration
 
-$ hostname <nom du vtep> #  routeur_yoelguer-2
+$ hostname <vtep name> #  routeur_yoelguer-2
 $ no ipv6 forwarding # no forwarding in ipv6
 
 ## Setup interface eth0

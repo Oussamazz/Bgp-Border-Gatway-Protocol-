@@ -15,10 +15,10 @@ after pulling and configuration (like the part one) is done, we gonna add the im
 - go to `edit`>`preferences`>`Docker`>`Docker containers`
 - for the machines : (alpine)
 	- `New` after that choose docker image `alpine`.
-	- choose 1 adapter.
+	- choose 2 adapter.
 	- stay clicking next until the dialog end.
-- for the routers : (router)
-	- `New` after that choose docker image `router`.
+- for the routers : (frr)
+	- `New` after that choose docker image `frr`.
 	- choose 2 adapters.
 	- stay clicking next until the dialog end.
 
@@ -58,9 +58,6 @@ router_will-1 :
 - make vxlan10 active
 	``ip link set dev vxlan10 up``
 
-- finally add ip address to `eth1` (default geteway) :
-	``ip addr add 20.1.1.1/24 dev eth1``
-
 router_will-2 :
 	``
 	ip link add br0 type bridge
@@ -71,16 +68,15 @@ router_will-2 :
 	brctl addif br0 eth1
 	brctl addif br0 vxlan10
 	ip link set dev vxlan10 up
-	ip addr add 20.1.1.2/24 dev eth1
 	``
 ### configuration machines :
 
 host_will-1 :
-	``ip addr add 20.1.1.10/24 dev eth0``
+	``ip addr add 20.1.1.10/24 dev eth1``
 
 
 host_will-2 :
-	``ip addr add 20.1.1.20/24 dev eth0``
+	``ip addr add 20.1.1.20/24 dev eth1``
 
 
 ### Multi-routing confirguration :
@@ -97,7 +93,6 @@ router_will-1 :
 	brctl addif br0 eth1
 	brctl addif br0 vxlan10
 	ip link set dev vxlan10 up
-	ip addr add 20.1.1.1/24 dev eth1
 	``
 
 router_will-2 :
@@ -110,13 +105,12 @@ router_will-2 :
 	brctl addif br0 eth1
 	brctl addif br0 vxlan10
 	ip link set dev vxlan10 up
-	ip addr add 20.1.1.2/24 dev eth1
 	``
 
 ### machine configuration :
 host_will-1 :
-	``ip addr add 20.1.1.10/24 dev eth0``
+	``ip addr add 20.1.1.10/24 dev eth1``
 
 host_will-2 :
-	``ip addr add 20.1.1.20/24 dev eth0``
+	``ip addr add 20.1.1.20/24 dev eth1``
 

@@ -1,6 +1,7 @@
 part one 
 install docker and gns3
-pull from docker images frrouting and gns3 , alpine
+pull from docker images:
+ 	frrouting and gns3 , alpine
 ...
 change to gnome flashback metacity
 
