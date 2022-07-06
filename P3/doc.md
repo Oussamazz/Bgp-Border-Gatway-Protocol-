@@ -1,6 +1,6 @@
-#P3
 
-# BGP - eVPN
+
+# Part 3: BGP - eVPN
 
 we will create routeurs / hosts topology.
 
@@ -24,16 +24,15 @@ $ ip link set eth2 up
 
 ---
 ## Routeurs & FRRouting
-
-FRRouting offre une _CLI_ semblable à celle de CISCO, avec le système de privilèges suivant:
-
+FRR is free software that implements and manages various IPv4 and IPv6 routing protocols.
+It runs on nearly all distributions of Linux and BSD and supports all modern CPU architectures.
 
 ## Configuration des VTEP
 
-In our subject the _VTEP_ (Virtual Termination End-Point), are three in number,
+In our subject the _VTEP_ (Virtual Termination End-Point), (3 VTEPs)
 our "**Leafs**" on the topology, we will configure them first.
 
-### router 2
+### router 2 (first leaf)
 
 ```sh
 $ brctl addbr br0 # bridge create
@@ -178,7 +177,7 @@ $ ip addr add 20.1.1.3/24 dev eth0
 
 ---
 
-## Configuration du RR (`_yoelguer-1`)
+## Configuration du RR (route reflector) (`_yoelguer-1`)
 
 we will configure our frr:
 
